@@ -20,7 +20,7 @@ def function_replace(data):
   data = re.sub(b'\x64\x2e\x6e\x6f\x6d\x6c\x72\x75',b'\x90\x90\x90\x90\x90\x90\x90\x90', data)
   # cmd
   data = re.sub(b'\x63\x6d\x64\2e',b'\x90\x90\x90\x90', data)
-  
+
   return data
 
 # PEB(Process Environment Block)
@@ -39,6 +39,8 @@ def peb_replace(data): # PEB + 0x0C = PEB LDR DATA address + 0x14 = in memory mo
   # replace <mov $reg, fs:[$reg+30h]>// 31 ?? 64 8b ?? 30
   data = re.sub(b'\x31'+b'.'+ b'\x64\x8b.\x30',b'\x90\x90\x90\x90\x90\x90',data)
 
+  # replace <xor EAX,DWORD PTR FS:[EAX+30] // 64 33 .. 30
+  data = re.sub(b'\x64\x33.\x30',b'\x90\x90\x90\x90',data)
 
   return data
 
