@@ -18,7 +18,9 @@ def function_replace(data):
   data = re.sub(b'\x68\x57\x69\x6e\x45',b'\x90\x90\x90\x90\x90', data)
   # urlmon.dll
   data = re.sub(b'\x64\x2e\x6e\x6f\x6d\x6c\x72\x75',b'\x90\x90\x90\x90\x90\x90\x90\x90', data)
- 
+  # cmd
+  data = re.sub(b'\x63\x6d\x64\2e',b'\x90\x90\x90\x90', data)
+  
   return data
 
 # PEB(Process Environment Block)
